@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "68882542183",
+    "project_id": "bag-it-cb15e",
+    "storage_bucket": "bag-it-cb15e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68882542183:android:909cc10f381e14bad96ec2",
+        "android_client_info": {
+          "package_name": "com.example.bag_it"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyLfhw06lW-wDy_nk4GHMikV2oqK5UgI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68882542183:android:f384d2eee7b272dad96ec2",
+        "android_client_info": {
+          "package_name": "com.example.grocery_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyLfhw06lW-wDy_nk4GHMikV2oqK5UgI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
