@@ -23,14 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   checkUser() {
     Future.delayed(const Duration(seconds: 2), () async {
-      User? currentUser = await Network().checkCurrentUser(context);
-      if (currentUser != null) {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => HomePage()));
-      } else {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => OnboardingScreen()));
-      }
+      await Network().checkCurrentUser(context);
     });
   }
 

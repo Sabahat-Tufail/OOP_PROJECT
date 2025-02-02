@@ -1,5 +1,6 @@
 import 'package:bag_it/network/network.dart';
 import 'package:bag_it/utils/screen_utils/screen_utils.dart';
+import 'package:bag_it/views/onboarding.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final List<String> images = [
     "assets/images/apple.png",
     "assets/images/bakery_snacks.png",
     "assets/images/banana.png",
-   "assets/images/beef_bone.png",
+    "assets/images/beef_bone.png",
   ];
 
   @override
@@ -50,7 +50,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           centerTitle: false,
-
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
@@ -72,8 +71,8 @@ class _HomePageState extends State<HomePage> {
             height: 400,
             width: 400,
             child: Column(
-             //  mainAxisAlignment: MainAxisAlignment.center,
-             // crossAxisAlignment: CrossAxisAlignment.start,
+              //  mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -83,14 +82,29 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(vertical: 40.0),
                       child: CircleAvatar(
                           radius: 60,
-                          child: Image(image: AssetImage('assets/images/girl_profile.png'),)
-                      ),
+                          child: Image(
+                            image: AssetImage('assets/images/girl_profile.png'),
+                          )),
                     ),
-                    SizedBox(height: 0,),
-                    Text(FirebaseAuth.instance.currentUser!.email!,style: TextStyle(color: Colors.black,fontSize: 20),),
+                    SizedBox(
+                      height: 0,
+                    ),
+                    Text(
+                      FirebaseAuth.instance.currentUser!.email!,
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    ),
                   ],
                 ),
-
+                SizedBox(
+                  height: 40,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Network().signOutUser();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => OnboardingScreen()));
+                    },
+                    child: Text("SignOut"))
               ],
             ),
           ),
@@ -98,14 +112,13 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             // good morning bro
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0),
               child: Text('Good morning,'),
             ),
 
-             SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: screenHeight * 0.01),
 
             // Let's order fresh items for you
             Padding(
@@ -117,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                     height: screenHeight * 0.25,
                     autoPlay: true,
                     enlargeCenterPage: true,
-                    aspectRatio: 16/9,
+                    aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.easeInOut,
                     enableInfiniteScroll: true,
                     autoPlayInterval: Duration(seconds: 3),
@@ -136,12 +149,11 @@ class _HomePageState extends State<HomePage> {
                     );
                   }).toList(),
                 ),
-              ),),
+              ),
+            ),
 
-
-
-             Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth*0.1),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
               child: Divider(),
             ),
 
@@ -162,11 +174,12 @@ class _HomePageState extends State<HomePage> {
             Consumer<CartModel>(
               builder: (context, value, child) {
                 return SizedBox(
-                  height: screenHeight * 0.5, // Set a specific height for the GridView
+                  height: screenHeight *
+                      0.5, // Set a specific height for the GridView
                   child: GridView.builder(
                     scrollDirection: Axis.vertical,
                     padding: const EdgeInsets.all(12),
-                   // physics: const NeverScrollableScrollPhysics(),
+                    // physics: const NeverScrollableScrollPhysics(),
                     itemCount: value.shopItems.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -200,7 +213,6 @@ class _HomePageState extends State<HomePage> {
                             itemName: item[0],
                             itemPrice: item[1],
                             imagePath: item[2],
-
                             onPressed: () {
                               // Optional: You can handle Add to Cart logic here if you want to add directly from the grid view
                               Provider.of<CartModel>(context, listen: false)
@@ -215,7 +227,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
 
-           // const SizedBox(height: 24),
+            // const SizedBox(height: 24),
           ],
         ));
   }
